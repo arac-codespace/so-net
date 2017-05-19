@@ -1,0 +1,50 @@
+// Place all the styles related to the profiles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// I'll be using rem for most of the layout and font-size. em for small layout
+// menus and whatnot.
+
+// Generally, when width and padding are specified, use border-box.
+
+
+// Profile Show CSS
+
+.container-parent {
+  display: flex;
+  margin: 0 8rem 0 8rem;
+  align-items: flex-start;
+}
+
+// Settings for main container  
+.main {
+  flex-grow: 2;
+  background-color: green;
+}
+
+// Settings for right container
+.right-column {
+  margin-left: 2rem;
+  flex-grow: 1;
+  background-color: purple;
+}
+
+// Min-height to help visualize space temp. p margins 0 to get rid of extra
+//margin source
+div.main > div {
+  min-height: 20rem;
+  background-color: white;
+  > p {
+    margin: 0;
+  }
+}
+
+// Padding for all sections except first child
+div.main > div:not(:first-child) {
+  padding: 2rem;
+}
+// Top margin for all sections except first two childs
+div.main > div:nth-child(n+3) {
+  margin-top: 2rem;
+}
