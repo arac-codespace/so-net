@@ -1,10 +1,9 @@
 <h1> Form for creating a new post!</h1>
 <!--multipart is for file upload! -->
-<%= @current_user_id.id %>
 
 <%= form_for @user_info, url: profiles_path, :html => { :multipart => true } do |f| %>
   
-  <%= f.hidden_field :user_id, value: @current_user_id.id %>   
+  <%= f.hidden_field :user_id, value: @current_user_id%>   
   
   <div class = "form-group">
     <%= f.label :country %>

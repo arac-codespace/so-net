@@ -3,12 +3,14 @@ class ProfilesController < ApplicationController
   def show
     @user = current_user
     @user_info = UserInfo.find_by(user_id: params[:id])
+    @education = Education.find_by(user_id: params[:id])
 
   end
   
   def new
     @user_info = UserInfo.new
-    @current_user_id = current_user
+    @current_user = current_user
+    @current_user_id = @current_user.id
   end
   
   def create
@@ -23,6 +25,7 @@ class ProfilesController < ApplicationController
 
   def edit
     @user_info = UserInfo.find_by(user_id: params[:id])
+    @user = current_user
     # @user_id = params[:id]
     
   end
@@ -48,7 +51,7 @@ class ProfilesController < ApplicationController
   private
   
   def user_info_params
-      paras_allow = :country, :state, :summary, :phone, :user_id, :headline
+      paras_allow = :first_name, :last_name, :country, :state, :summary, :phone, :user_id, :headline, :school, :degree, :field, :start_date, :end_date, :grade, :description
       params.require(:user_info).permit(paras_allow)
   end    
   

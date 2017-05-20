@@ -24,4 +24,3 @@ $(document).ready ->
   if $('#headline-field').is(':empty')
     $('#headline-field').hide()
   else
-
