@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   
   def show
     @user = current_user
+    @user_info = UserInfo.find_by(user_id: params[:id])
 
   end
   
@@ -47,7 +48,7 @@ class ProfilesController < ApplicationController
   private
   
   def user_info_params
-      paras_allow = :country, :state, :summary, :phone, :user_id
+      paras_allow = :country, :state, :summary, :phone, :user_id, :headline
       params.require(:user_info).permit(paras_allow)
   end    
   
