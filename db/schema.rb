@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520035649) do
+ActiveRecord::Schema.define(version: 20170520213326) do
 
   create_table "educations", force: :cascade do |t|
     t.string   "school"
     t.string   "degree"
     t.string   "field"
-    t.integer  "grade"
+    t.decimal  "grade"
     t.date     "start_date"
     t.date     "end_date"
     t.text     "description"
