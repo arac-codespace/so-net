@@ -8,7 +8,6 @@ class EducationsController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
     # Ids the proper education record to create the form_for
     # Query string row_id is used for that purpose
     @education = Education.find(params[:row_id])
@@ -31,7 +30,8 @@ class EducationsController < ApplicationController
   end  
   
   def update
-    @education = Education.find_by(user_id: params[:id])
+    # Find the corresponding record id that you want to update!
+    @education = Education.find(params[:id])
     
      respond_to do |format|
       if @education.update(education_params)
@@ -46,7 +46,7 @@ class EducationsController < ApplicationController
   end  
 
   def destroy
-    
+    # Find the corresponding record id that you want to destroy!
     @education = Education.find(params[:id])
 
     @education.destroy

@@ -1,5 +1,5 @@
-<%= form_for @education, remote: true, url: education_path, :html => { :multipart => true } do |f| %>
-  
+<%= form_for @education, remote: true, url: education_path(id: @education.id), :html => { :multipart => true } do |f| %>
+  <%= @education.inspect %>
   <div class= "form-group">
     <%= f.label :school, "School/University" %>
     <%= f.text_field :school, class: "form-control" %>
