@@ -1,12 +1,12 @@
 class ProfilesController < ApplicationController
   
   def show
-    # @user = current_user
     @user = User.find(params[:id])
     @user_info = UserInfo.find_by(user_id: params[:id])
     @education = Education.find_by(user_id: params[:id])
-    # @education_where = Education.where(user_id: params[:id])
     @education_user = @user.educations
+    # Used in conjunction with the educations render
+    @educations = @user.educations
 
   end
   

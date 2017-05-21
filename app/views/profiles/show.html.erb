@@ -1,8 +1,6 @@
 <div class = "container-parent"> 
-  <!-- TOPCARD MODAL! -->
-  <%= render "topcard_modal" %>
-  <!--  TEST MODAL! -->
-  <%= render "education_modal" %>
+  <!-- render modal -->
+  <%= render "base_modal" %>
 
   <div class = "main">
 
@@ -47,19 +45,15 @@
     
     <div class = "m-item ed-sec">
       
-      <div class = "edit-education">
-        <a class= "btn btn-default btn-modal" type="button" data-toggle="modal" data-target="#edit-education-modal" href="#">Edit</a>
-      </div>
-      
       <h4>Education</h4>
-      <% @user.educations.each do |x| %>
-        <h5 id='school-field'> <%= x.school %></h5>
-        <h5 id='degree-field'> <%= x.degree %>, <%= x.field %> </h5>
-        <h5 id='grade-field'> Grade: <%= x.grade %></h5>
-        <h5 id='start_date-field'> From: <%= x.start_date %> To: <%= x.end_date %></h5>
-        <h5 id='description-field'> <%= x.description %></h5>
-      <% end %>
+     <div class="new_ed_btn">
+        <%= link_to "New Education", new_education_path, remote: true, class: "btn btn-primary" %>
+      </div>      
       
+      <div id="educations">
+        <%= render @educations %>
+      </div>
+
     </div>
     
     <div class = "m-item skls-sec">

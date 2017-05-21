@@ -9,37 +9,53 @@ class EducationsController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-    @education = @user.educations
+    # Ids the proper education record to create the form_for
+    # Query string row_id is used for that purpose
+    @education = Education.find(params[:row_id])
     
   end
   
   def create
-    @education = Education.new(education_params)
-    if @education.save
-        flash[:success] = "Profile Created"
-        redirect_to root_path
-    else
-        render action: :new
-    end    
-  end    
-
+    @education = Education.create(education_params)
+ 
+    respond_to do |format|
+      if @education.save
+        format.json { head :no_content }
+        format.js
+      else
+        format.json { render json: @education.errors.full_messages, 
+                            status: :unprocessable_entity }
+      end
+      
+    end
+  end  
+  
   def update
     @education = Education.find_by(user_id: params[:id])
-    if @education.update_attributes(education_params)
-      flash[:success] = "Artículo Revisado!"
-      # Redirect to the education's profile
-      redirect_to root_path
-    else
-      render action: :edit #Don't send, go back to edit action.
+    
+     respond_to do |format|
+      if @education.update(education_params)
+        format.json { head :no_content }
+        format.js
+      else
+        format.json { render json: @education.errors.full_messages,
+                                   status: :unprocessable_entity }
+      end
+     
     end
   end  
 
   def destroy
+    
     @education = Education.find(params[:id])
+
     @education.destroy
-    flash.notice= "Artículo eliminado."
-    redirect_to root_path
-  end  
+    respond_to do |format|
+      format.js
+      format.html { redirect_to posts_url }
+      format.json { head :no_content }
+    end
+  end
   
   def index
   end
