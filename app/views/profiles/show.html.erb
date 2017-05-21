@@ -1,122 +1,8 @@
 <div class = "container-parent"> 
   <!-- TOPCARD MODAL! -->
-  <div class="modal fade" tabindex="-1" role="dialog" id= "edit-topcard-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Edit Intro</h4>
-        </div>
-        <div class="modal-body">
-
-          <%= form_for @user_info, url: profile_path, :html => { :multipart => true } do |f| %>
-            
-            <div class = "form-group">
-              <%= f.label :headline %>
-              <%= f.text_area :headline, class: "form-control" %>
-            </div>  
-            
-            <%= link_to "Add education", new_education_path, class: "btn btn-default" %>
-            
-            <div class = "form-group">
-              <%= f.label :country %>
-              <%= f.text_field :country, class: "form-control" %>
-            </div>  
-            
-            <div class = "form-group">
-              <%= f.label :state %>
-              <%= f.text_field :state, class: "form-control" %>
-            </div>  
-            
-            <div class = "form-group">
-              <%= f.label :summary %>
-              <%= f.text_area :summary, class: "form-control" %>
-            </div>
-            
-            <div class = "form-group">
-              <%= f.label :phone %>
-              <%= f.text_field :phone, class: "form-control" %>
-            </div>    
-            
-            <div class="modal-footer">
-              <div class = "form-group">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <%= f.submit "Save Changes", class: 'btn btn-primary' %>
-              </div>
-            
-            </div> <!-- modal footer end -->
-            
-          <% end %> <!-- form_for end -->
-
-        </div> <!-- modal body end -->
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
+  <%= render "topcard_modal" %>
   <!--  TEST MODAL! -->
-  
-  <div class="modal fade" tabindex="-1" role="dialog" id= "edit-education-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Edit Education</h4>
-        </div>
-        <div class="modal-body">
-
-        <%= form_for @education, url: education_path, :html => { :multipart => true } do |f| %>
-            
-            <%= link_to "Add education", new_education_path, class: "btn btn-default" %>
-
-            <div class= "form-group">
-              <%= f.label :school, "School/University" %>
-              <%= f.text_field :school, class: "form-control" %>
-            </div>   
-            
-            <div class = "form-group">
-              <%= f.label :degree %>
-              <%= f.text_field :degree, class: "form-control" %>
-            </div>  
-            
-            <div class = "form-group">
-              <%= f.label :field %>
-              <%= f.text_field :field, class: "form-control" %>
-            </div>
-            
-            <div class = "form-group">
-              <%= f.label :grade %>
-              <%= f.text_field :grade, class: "form-control" %>
-            </div>  
-            
-            <div class= "form-group">
-              <%= f.label :start_date, "Start Date" %> 
-              <%= f.date_select(:start_date, :order => [:month, :day, :year], start_year: 1960) %>
-            </div>  
-            
-            <div class= "form-group">
-              <%= f.label :end_date, "Finish Date" %> 
-              <%= f.date_select(:end_date, :order => [:month, :day, :year], start_year: 1960) %>
-            </div>    
-            
-            <div class = "form-group">
-              <%= f.label :description %>
-              <%= f.text_area :description, class: "form-control" %>
-            </div>    
-            
-            <div class="modal-footer">
-              <div class = "form-group">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <%= f.submit "Save Changes", class: 'btn btn-primary' %>
-              </div>
-            
-            </div> <!-- modal footer end -->
-            
-          <% end %> <!-- form_for end -->
-
-        </div> <!-- modal body end -->
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->  
+  <%= render "education_modal" %>
 
   <div class = "main">
 
@@ -132,7 +18,7 @@
       <div class='general-info'>
         <h3 id='name-field'> <%=@user.first_name%> <%=@user.last_name%> </h3>
         <h4 id="headline-field"> <%= @user_info.headline %> </h4> 
-        <h4 id="education-field"> <%= @education.school %> </h4> <!-- This is a select from education model options-->
+        <h4 id="education-field"> <%= @user_info.education %> </h4> <!-- This is a select from education model options-->
         <h5 id='location-field'> <%= @user_info.country%>, <%= @user_info.state%> </h5>
       </div>
       
@@ -166,11 +52,13 @@
       </div>
       
       <h4>Education</h4>
-      <h5 id='school-field'> <%= @education.school %></h5>
-      <h5 id='degree-field'> <%= @education.degree %>, <%= @education.field %> </h5>
-      <h5 id='grade-field'> Grade: <%= @education.grade %></h5>
-      <h5 id='start_date-field'> From: <%= @education.start_date %> To: <%= @education.end_date %></h5>
-      <h5 id='description-field'> <%= @education.description %></h5>
+      <% @user.educations.each do |x| %>
+        <h5 id='school-field'> <%= x.school %></h5>
+        <h5 id='degree-field'> <%= x.degree %>, <%= x.field %> </h5>
+        <h5 id='grade-field'> Grade: <%= x.grade %></h5>
+        <h5 id='start_date-field'> From: <%= x.start_date %> To: <%= x.end_date %></h5>
+        <h5 id='description-field'> <%= x.description %></h5>
+      <% end %>
       
     </div>
     

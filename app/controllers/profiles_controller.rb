@@ -1,9 +1,12 @@
 class ProfilesController < ApplicationController
   
   def show
-    @user = current_user
+    # @user = current_user
+    @user = User.find(params[:id])
     @user_info = UserInfo.find_by(user_id: params[:id])
     @education = Education.find_by(user_id: params[:id])
+    # @education_where = Education.where(user_id: params[:id])
+    @education_user = @user.educations
 
   end
   
@@ -51,7 +54,7 @@ class ProfilesController < ApplicationController
   private
   
   def user_info_params
-      paras_allow = :first_name, :last_name, :country, :state, :summary, :phone, :user_id, :headline, :school, :degree, :field, :start_date, :end_date, :grade, :description
+      paras_allow = :education, :first_name, :last_name, :country, :state, :summary, :phone, :user_id, :headline, :school, :degree, :field, :start_date, :end_date, :grade, :description
       params.require(:user_info).permit(paras_allow)
   end    
   

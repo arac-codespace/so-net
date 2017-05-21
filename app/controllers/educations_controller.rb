@@ -27,6 +27,13 @@ class EducationsController < ApplicationController
       render action: :edit #Don't send, go back to edit action.
     end
   end  
+
+  def destroy
+    @education = Education.find(params[:id])
+    @education.destroy
+    flash.notice= "Artículo eliminado."
+    redirect_to root_path
+  end  
   
   def index
   end
