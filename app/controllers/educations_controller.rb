@@ -7,6 +7,12 @@ class EducationsController < ApplicationController
     @current_user_id = @current_user.id
   end
   
+  def edit
+    @user = User.find(params[:id])
+    @education = @user.educations
+    
+  end
+  
   def create
     @education = Education.new(education_params)
     if @education.save

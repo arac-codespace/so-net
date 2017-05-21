@@ -18,9 +18,16 @@
 #   return
 
 
-$(document).ready ->
+# $(document).ready ->
 
-  # JS to hide empty fields...
-  if $('#headline-field').is(':empty')
-    $('#headline-field').hide()
-  else
+#   $('#myModal').on 'show.bs.modal', (e) ->
+#     link = $(e.relatedTarget)
+#     $(this).find('.modal-body').load link.attr('href')
+#     return
+
+
+#   # JS to hide empty fields...
+#   if $('#headline-field').is(':empty')
+#     $('#headline-field').hide()
+#   else
+
