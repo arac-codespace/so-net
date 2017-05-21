@@ -9,9 +9,11 @@
     <div class = "m-item topcard">
       
       <!-- This is where the edit btn for the topcard sec is -->
-      <div class = "edit-topcard">
-        <a class= "btn btn-default btn-modal" type="button" data-toggle="modal" data-target="#edit-topcard-modal" href="#">Edit</a>
-      </div>
+      <!--<div class = "edit-topcard">-->
+      <!--  <a class= "btn btn-default btn-modal" type="button" data-toggle="modal" data-target="#edit-topcard-modal" href="#">Edit</a>-->
+      <!--</div>-->
+      
+      <%= link_to 'Edit', edit_profile_path(@user), remote: true, :class => 'btn btn-sm btn-info' %>
       
       <div class='general-info'>
         <h3 id='name-field'> <%=@user.first_name%> <%=@user.last_name%> </h3>
