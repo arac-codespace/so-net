@@ -1,12 +1,18 @@
 class ProfilesController < ApplicationController
   
+  def index
+  end 
+  
   def show
     @user = User.find(params[:id])
     @user_info = UserInfo.find_by(user_id: params[:id])
     @education = Education.find_by(user_id: params[:id])
-    @education_user = @user.educations
-    # Used in conjunction with the educations render
+    @work = Work.find_by(user_id: params[:id])
+    # @education_user = @user.educations
+    # Used in conjunction with the educations render! Important!
     @educations = @user.educations
+    # Used in conjunction with the works render! Important!
+    @works = @user.works
 
   end
   
@@ -48,24 +54,6 @@ class ProfilesController < ApplicationController
      
     end
   end 
-  
-  # def update
-  #   @user_info = UserInfo.find_by(user_id: params[:id])
-  #   if @user_info.update_attributes(user_info_params)
-  #     flash[:success] = "Artículo Revisado!"
-  #     # Redirect to the user_info's profile
-  #     redirect_to root_path
-  #   else
-  #     render action: :edit #Don't send, go back to edit action.
-  #   end
-  # end
-  
-  def destroy
-    @user_info = UserInfo.find(params[:id])
-    @user_info.destroy
-    flash.notice= "Artículo eliminado."
-    redirect_to root_path
-  end  
   
   private
   

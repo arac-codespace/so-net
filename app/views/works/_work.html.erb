@@ -1,0 +1,13 @@
+<!-- JQuery uses this to attach/remove the corresponding entry when actions are run -->
+<div id= "work_<%= work.id%>">
+  <h5 id='company-field'> <%= work.company %></h5>
+  <h5 id='industry-field'> <%= work.industry %></h5>
+  <h5 id='job_title-field'> Grade: <%= work.job_title %></h5>
+  <h5 id='work-date-field'> From: <%= work.start_date %> To: <%= work.end_date %></h5>
+  <h5 id='work-description-field'> <%= work.description %></h5>
+
+  <!-- Path ids are user ids.  Row_id is a query string used to make record_id avaible for edit view -->
+<%= link_to 'Edit', edit_work_path(work.user_id, row_id: work.id), remote: true, :class => 'btn btn-sm btn-info' %>
+<%= link_to 'Delete', work, remote: true, :method => :delete, data: {confirm: "Delete?"}, :class => 'btn btn-sm btn-danger' %>
+    
+</div>

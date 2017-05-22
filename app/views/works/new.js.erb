@@ -1,0 +1,9 @@
+// Add the dialog title
+$('#myModalLabel').html("<i class='glyphicon glyphicon-plus'></i> Add new Work Experience "); 
+
+// Render the new form
+$('.modal-body').html('<%= j render("new_wk_form") %>');
+ 
+// Show the dynamic dialog
+$('#dialog').modal("show");
+ 

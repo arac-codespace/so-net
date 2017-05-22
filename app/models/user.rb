@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_one :user_info, dependent: :destroy
   has_many :educations, dependent: :destroy
+  has_many :works, dependent: :destroy
   
   # accepts_nested_attributes_for :user_info   
   
