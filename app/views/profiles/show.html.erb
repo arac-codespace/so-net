@@ -16,7 +16,7 @@
       <%= link_to 'Edit', edit_profile_path(@user), remote: true, :class => 'btn btn-sm btn-info' %>
       
       <div class='general-info'>
-        <h3 id='name-field'> <%=@user.first_name%> <%=@user.last_name%> </h3>
+        <h3 id='name-field'> <%=@user_info.first_name%> <%=@user_info.last_name%> </h3>
         <h4 id="headline-field"> <%= @user_info.headline %> </h4> 
         <h4 id="education-field"> <%= @user_info.education %> </h4> <!-- This is a select from education model options-->
         <h5 id='location-field'> <%= @user_info.country%>, <%= @user_info.state%> </h5>
