@@ -26,8 +26,8 @@
 #     return
 
 
-#   # JS to hide empty fields...
-#   if $('#headline-field').is(':empty')
-#     $('#headline-field').hide()
-#   else
+  # JS to hide empty fields...
+  # if $('#location-field').is(':empty')
+  #   $('#location-field').hide()
+  # else
 

@@ -1,19 +1,16 @@
 class User < ApplicationRecord
-  has_one :user_info
-  has_many :educations
+  has_one :user_info, dependent: :destroy
+  has_many :educations, dependent: :destroy
   
   # accepts_nested_attributes_for :user_info   
   
-  after_create :build_user_info, :build_education
+  after_create :build_user_info
   
   
   def build_user_info
     UserInfo.create(user: self, first_name: self.first_name, last_name: self.last_name) # Associations must be defined correctly for this syntax, avoids using ID's directly.
   end  
   
-  def build_education
-    Education.create(user: self)
-  end
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

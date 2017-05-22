@@ -1,0 +1,10 @@
+<!-- JQuery uses this to attach/remove the corresponding entry when actions are run -->
+<div id= "profile" class= "general-info">
+  <h3 id='name-field'> <%=user_info.first_name%> <%=user_info.last_name%> </h3>
+  <h4 id="headline-field"> <%= user_info.headline %> </h4> 
+  <h4 id="education-field"> <%= user_info.education %> </h4> <!-- This is a select from education model options-->
+  <h5 id='location-field'> <%= user_info.country%>, <%= user_info.state%> </h5>
+  <p id ="summary-field"> <%= user_info.summary %></p>
+  
+</div>
+

@@ -8,23 +8,12 @@
     
     <div class = "m-item topcard">
       
-      <!-- This is where the edit btn for the topcard sec is -->
-      <!--<div class = "edit-topcard">-->
-      <!--  <a class= "btn btn-default btn-modal" type="button" data-toggle="modal" data-target="#edit-topcard-modal" href="#">Edit</a>-->
-      <!--</div>-->
-      
       <%= link_to 'Edit', edit_profile_path(@user), remote: true, :class => 'btn btn-sm btn-info' %>
       
-      <div class='general-info'>
-        <h3 id='name-field'> <%=@user_info.first_name%> <%=@user_info.last_name%> </h3>
-        <h4 id="headline-field"> <%= @user_info.headline %> </h4> 
-        <h4 id="education-field"> <%= @user_info.education %> </h4> <!-- This is a select from education model options-->
-        <h5 id='location-field'> <%= @user_info.country%>, <%= @user_info.state%> </h5>
-      </div>
+      <div id= "profiles">  
+        <%= render partial: "user_info", object: @user_info %>
+      </div>  
       
-      <div class= "summary-container">
-        <p> <%= @user_info.summary %></p>
-      </div>
       
     </div>
     
@@ -52,11 +41,15 @@
         <%= link_to "New Education", new_education_path, remote: true, class: "btn btn-primary" %>
       </div>      
       
-      <div id="educations">
-        <!-- Funny enough, this renders the education partial and makes the records from the education 
-        var in the profile/show controller available to be used in the partial in the form education.column -->
-        <%= render @educations %>
-      </div>
+      <!-- This way I don't need to instantiate an Education entry and the page will not break if user
+      jumps out of user registration... -->
+      <% if @educations != nil %>
+        <div id="educations">
+          <!-- Funny enough, this renders the education partial and makes the records from the education 
+          var in the profile/show controller available to be used in the partial in the form education.column -->
+          <%= render @educations %>
+        </div>
+      <% end %>
 
     </div>
     
