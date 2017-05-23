@@ -1,0 +1,17 @@
+Edit skill view...
+
+This will be the add Skill code.  This generates a hidden field for each array and sends it as a query along with the 
+new field to the update action which will basically replace the old field array with a new one...
+
+This WILL require some validations to avoid some user shenanigans.  The most obvious one is not allowing empty fields to be sent.
+
+<%= form_for @skill do |f| %>
+
+  <% @skill.skill_hash.each do |array| %>
+    <%= array %>
+      <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+  <% end %>
+
+  <%= f.text_field :skill_hash, name: 'skill[skill_hash][]' %>
+  <%= f.submit %>
+<% end %>  

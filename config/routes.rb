@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :profiles, except: [:destroy]
   resources :educations, except: [:index, :show]
   resources :works, except: [:index, :show]
+  resources :skills
 
 end
