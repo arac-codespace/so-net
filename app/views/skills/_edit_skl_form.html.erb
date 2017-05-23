@@ -1,0 +1,51 @@
+<!-- Add Path -->
+
+<% if @skill_path %> 
+
+  <h3> Add Skill Form </h3>
+  <%= @skill_path %>
+  <%= form_for @skill, remote: true do |f| %>
+  
+    <% @skill.skill_hash.each do |array| %>
+        <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+    <% end %>
+  
+    <%= f.text_field :skill_hash, name: 'skill[skill_hash][]' %>
+    
+    <div class="modal-footer">
+      <%= f.submit "Add Skill", class: "btn btn-sm btn-info" %>
+    </div>
+    
+  <% end %> 
+
+<% else %>
+  <!-- Delete Path -->
+  <h3> Edit Skill Form </h3>
+  <%= form_for @skill, remote: true do |f| %>
+  
+    <% @skill.skill_hash.each_with_index do |array, index| %>
+    
+      <div class = 'array_<%= index %>'>
+        <!--<div class = 'rows'>-->
+          <h4 class = 'skill_label'><%= array %></h4>
+          <span class = "btn btn-sm btn-danger btn_skill"> Remove Skill</span>
+        <!--</div>  -->
+      
+        <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+      </div>
+    
+    <% end %>
+  
+    <div class="modal-footer">
+      <%= f.submit "Save", class: "btn btn-sm btn-info" %>
+    </div>
+    
+  <% end %>
+  
+<% end %>
+
+<script>
+  $('.btn_skill').on('click', function() {
+    $(this).parent().remove();
+  });
+</script>

@@ -38,9 +38,7 @@
   <div class="modal-footer">
     <div class = "form-group">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      <%= link_to education_path(id: @education), method: :delete, data: {confirm: "Borrar este articulo?"}, class: "btn btn-default" do %>
-        <i class="fa fa-trash-o" aria-hidden="true"> Delete </i>
-      <% end %>        
+      <%= link_to 'Delete', @education, remote: true, :method => :delete, data: {confirm: "Delete?"}, :class => 'btn btn-sm btn-danger' %>
       <%= f.submit "Submit", class: 'btn btn-primary' %>
     </div>
   </div>  

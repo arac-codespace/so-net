@@ -8,6 +8,5 @@
 
   <!-- Path ids are user ids.  Row_id is a query string used to make record_id avaible for edit view -->
 <%= link_to 'Edit', edit_education_path(education.user_id, row_id: education.id), remote: true, :class => 'btn btn-sm btn-info' %>
-<%= link_to 'Delete', education, remote: true, :method => :delete, data: {confirm: "Delete?"}, :class => 'btn btn-sm btn-danger' %>
-    
+
 </div>
