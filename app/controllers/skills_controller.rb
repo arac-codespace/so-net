@@ -1,40 +1,30 @@
 class SkillsController < ApplicationController
   
-  def index
-    @skill = Skill.find(16)
-  end
-  
-  def new
-    @skill = Skill.new
-  end
-  
   def edit
-    @skill = Skill.find(params[:id])
+    @skill = Skill.find_by(user_id: params[:id])
     @skill_array = @skill.skill_hash
+    @skill_path = params[:path]
     
     
     
   end
   
-  def create
-    @skill = Skill.new(skill_params)
-    if @skill.save
-        flash[:success] = "Profile Updated"
-        redirect_to root_path
-    else
-        render action: :new
-    end    
-  end 
   
   def update
+    # Find the corresponding record id that you want to update!
     @skill = Skill.find(params[:id])
-  
+    
+     respond_to do |format|
       if @skill.update(skill_params)
-        redirect_to root_path
+        format.json { head :no_content }
+        format.js
       else
-        render action :edit
+        format.json { render json: @skill.errors.full_messages,
+                                   status: :unprocessable_entity }
       end
-  end
+     
+    end
+  end  
   
   private
   

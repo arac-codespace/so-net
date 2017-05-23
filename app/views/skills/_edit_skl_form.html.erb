@@ -3,14 +3,13 @@
 <% if @skill_path %> 
 
   <h3> Add Skill Form </h3>
-  <%= @skill_path %>
   <%= form_for @skill, remote: true do |f| %>
   
     <% @skill.skill_hash.each do |array| %>
         <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
     <% end %>
   
-    <%= f.text_field :skill_hash, name: 'skill[skill_hash][]' %>
+    <%= f.text_field :skill_hash, name: 'skill[skill_hash][]', :value =>'', :required => true %>
     
     <div class="modal-footer">
       <%= f.submit "Add Skill", class: "btn btn-sm btn-info" %>

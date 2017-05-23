@@ -66,8 +66,23 @@
     
     <!--Skills div-->
     <div class = "m-item skls-sec">
-      <h5>Featured Skills</h5>
-      <h5> List of skills </h5>
+      <h4> Featured Skills </h4>  
+      <div class="new_skl_btn">
+        <%= link_to edit_skill_path(path: 'add_path'), remote: true, class: "btn btn-primary" do %>
+          <i class='glyphicon glyphicon-plus'></i>          
+        <% end %>
+      </div>   
+      
+      <div class="edit_skl_btn">
+        <%= link_to edit_skill_path, remote: true, class: "btn btn-info" do %>
+          <i class='glyphicon glyphicon-pencil'></i>
+        <% end %>
+      </div>         
+
+      <%= render @skills %>
+
+
+
     </div>
     
     <!-- Misc div -->

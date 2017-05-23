@@ -8,11 +8,13 @@ class ProfilesController < ApplicationController
     @user_info = UserInfo.find_by(user_id: params[:id])
     @education = Education.find_by(user_id: params[:id])
     @work = Work.find_by(user_id: params[:id])
+    @skill = Skill.find_by(user_id: params[:id])
     # @education_user = @user.educations
     # Used in conjunction with the educations render! Important!
     @educations = @user.educations
     # Used in conjunction with the works render! Important!
     @works = @user.works
+    @skills = @user.skill
 
   end
   
