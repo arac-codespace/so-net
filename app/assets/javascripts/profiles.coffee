@@ -3,31 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-# revertToOriginalURL = ->
-#   original = window.location.href.substr(0, window.location.href.indexOf('#'))
-#   history.replaceState {}, document.title, original
-#   return
+$(document).ready ->
 
-# $(window.location.hash).modal 'show'
-# $('a.btn-modal').click ->
-#   window.location.hash = $(this).attr('href')
-#   return
-  
-# $('.modal').on 'hidden.bs.modal', ->
-#   revertToOriginalURL()
-#   return
-
-
-# $(document).ready ->
-
-#   $('#myModal').on 'show.bs.modal', (e) ->
-#     link = $(e.relatedTarget)
-#     $(this).find('.modal-body').load link.attr('href')
-#     return
-
-
-  # JS to hide empty fields...
-  # if $('#location-field').is(':empty')
-  #   $('#location-field').hide()
-  # else
+  # Array removal script.  This will activate when a btn with .btn_skill is clicked...
+  $('.btn_skill').on 'click', ->
+    $(this).parent().remove()
+    return
+  return
 

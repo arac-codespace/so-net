@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
   
   def index
-    @skill = Skill.find(15)
+    @skill = Skill.find(16)
   end
   
   def new

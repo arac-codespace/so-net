@@ -1,17 +1,43 @@
 Edit skill view...
 
-This will be the add Skill code.  This generates a hidden field for each array and sends it as a query along with the 
-new field to the update action which will basically replace the old field array with a new one...
+<!--This will be the add Skill code.  This generates a hidden field for each array and sends it as a query along with the -->
+<!--new field to the update action which will basically replace the old field array with a new one...-->
 
-This WILL require some validations to avoid some user shenanigans.  The most obvious one is not allowing empty fields to be sent.
+<!--This WILL require some validations to avoid some user shenanigans.  The most obvious one is not allowing empty fields to be sent.-->
+
+<!--%= form_for @skill do |f| %>-->
+
+  <!--% @skill.skill_hash.each do |array| %>-->
+    <!--%= array %>-->
+      <!--%= f.hidden_field :skill_hash, :multiple => true, :value => array %>-->
+  <!--% end %>-->
+
+  <!--%= f.text_field :skill_hash, name: 'skill[skill_hash][]' %>-->
+  <!--%= f.text_field :skill_hash, name: 'skill[skill_hash][]' %>-->
+  
+  <!--%= f.submit %>-->
+<!--% end %>  -->
+
+
+<!-- This will be the delete -> save boiler code.  This generates a hidden field for
+every element in the array that will be sent as a query array to the update controller.
+The delete 'btn' is fueled by JQuery, and it basically removes the parent div of
+the skill_btn that is pressed.  -->
 
 <%= form_for @skill do |f| %>
 
-  <% @skill.skill_hash.each do |array| %>
-    <%= array %>
+  <% @skill.skill_hash.each_with_index do |array, index| %>
+  
+    <div class = 'array_<%= index %>'>
+      <%= array %>
+      <span class = "btn btn-sm btn-info btn_skill"> Remove Skill</span>
+
       <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+    </div>
+  
   <% end %>
 
-  <%= f.text_field :skill_hash, name: 'skill[skill_hash][]' %>
-  <%= f.submit %>
+
+  <%= f.submit "Save", class: "btn btn-sm btn-info" %>
 <% end %>  
+
