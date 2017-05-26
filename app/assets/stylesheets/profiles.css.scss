@@ -84,3 +84,55 @@ div.main > div:nth-child(n+3) {
 .reorder-label {
   float: right;
 }
+
+// Skill btn float right using flexbox
+.skill-header-wrapper {
+ display: -webkit-flex;
+ display: flex;
+ -webkit-flex-direction: row;
+ flex-direction: row;
+  > .skill-header {
+    flex-grow: 1;
+  }
+  > .btn-add-skill {
+    margin-right: 16px;
+  }
+}
+
+
+// flex-parent (skill-wrapper) > list-wrapper (skill-iteration-wrapper) 
+// > item-specific-wrapper (skill-iteration-wrapper > text (h5)
+
+.skill-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;  
+}
+
+
+.skill-iteration-wrapper {
+  display: inline-block;
+  // Max width of elements
+  max-width: 20%;
+}
+
+.skill-iteration-tooltip {
+  // A line for each item of inline-block items!
+  display: block;
+}
+.skill-iteration-wrapper > div > h5 {
+  background-color: rgb(224, 224, 224);
+  border-radius: 32px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;  
+  text-align: center;
+  // Space wraps around element
+  display: inline-block;
+  // Max width allowed by iteration-wrapper
+  max-width: 100%;
+}

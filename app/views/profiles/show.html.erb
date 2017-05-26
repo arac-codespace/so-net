@@ -66,21 +66,32 @@
     
     <!--Skills div-->
     <div class = "m-item skls-sec">
-      <h4> Featured Skills </h4>  
-      <div class="new_skl_btn">
-        <%= link_to edit_skill_path(path: 'add_path'), remote: true, class: "btn btn-primary" do %>
-          <i class='glyphicon glyphicon-plus'></i>          
+
+      <div class="new_skl_btn skill-header-wrapper">
+        <h4 class='skill-header'> Featured Skills </h4>  
+        
+        
+        <%= link_to edit_skill_path(path: 'add_path'), remote: true, class: "btn btn-primary btn-add-skill" do %>
+          <!--<i class='glyphicon glyphicon-plus'></i>          -->
+          <span>Add a new skill</span>
         <% end %>
+        
+        <%= link_to edit_skill_path, remote: true, class: "btn btn-info btn-edit-skill" do %>
+          <i class='glyphicon glyphicon-pencil'></i>
+        <% end %>        
+        
+        
       </div>   
       
-      <div class="edit_skl_btn">
-        <%= link_to edit_skill_path, remote: true, class: "btn btn-info" do %>
-          <i class='glyphicon glyphicon-pencil'></i>
-        <% end %>
-      </div>         
-
-      <%= render @skills %>
-
+      <!--<div class="edit_skl_btn subheader-wrapper">-->
+      <!--  %= link_to edit_skill_path, remote: true, class: "btn btn-info" do %>-->
+      <!--    <i class='glyphicon glyphicon-pencil'></i>-->
+      <!--  % end %>-->
+      <!--</div>    -->
+      
+      <div class= 'skill-wrapper'>
+        <%= render @skills %>
+      </div>
 
 
     </div>
