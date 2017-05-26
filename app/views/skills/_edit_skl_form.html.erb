@@ -8,7 +8,7 @@
         <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
     <% end %>
   
-    <div class='form_wrapper'>
+    <div id='form_wrapper'>
       <div class = "form-group">
         <%= f.label :skill_hash, "Skill"%>
         <%= f.text_field :skill_hash, name: 'skill[skill_hash][]', :value =>'', :required => true, class: "form-control" %>
@@ -32,16 +32,31 @@
     <!--Iterate through the user's skill array to list them in hidden fields that
     will be sent as query string to the post request along with the new skill 
     the user wants to add -->
-    <% @skill.skill_hash.each_with_index do |array, index| %>
-    
-      <div class = 'array_<%= index %>'>
-        <h4 class = 'skill_label'><%= array %></h4>
-        <span class = "btn btn-sm btn-danger btn_skill"> Remove Skill</span>
-
-        <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+    <ul id="edit_wrapper">
+      
+      <div class= 'edit-info'>
+        <h6 class= 'delete-label'> Delete</h6>
+        <h6 class= 'reorder-label'> Reorder</h6>
       </div>
-    
-    <% end %>
+      
+      <% @skill.skill_hash.each_with_index do |array, index| %>
+        <li>
+          <div class = 'array_<%= index %>'>
+            
+            <!--User view-->
+            <i class='glyphicon glyphicon-remove btn btn-danger btn_skill'></i>
+            <h4 class = 'skill_label'><%= array %></h4>
+            
+            <!--Sortable handler -->
+            <i class='glyphicon glyphicon-sort btn btn-default btn-handler'></i>
+
+            
+            <!-- Hidden value field -->
+            <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   
     <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -70,12 +85,12 @@
     // not needed for the add and remove btns to work as they work by selecting
     // the last child of an element.
     
-    var form_div_id = $(".form_wrapper div").length+1;
+    var form_div_id = $("#form_wrapper div").length+1;
     var form_div = "<div class=\"form-group\" id=\"field" + form_div_id + "\"/>"
     
     var field = '<input name="skill[skill_hash][]" value="" required="required" class="form-control" type="text" id="skill_skill_hash"/>'
     
-    $('.form_wrapper').append(form_div);
+    $('#form_wrapper').append(form_div);
     
     $('.form-group').last().append(field);
 
@@ -86,6 +101,9 @@
       $(".form-group").not(':first').last().remove();
     })
   
+  // Sorting script?
+  $('#edit_wrapper').sortable({containment: 'parent', tolerance: 'pointer', cursor: 'pointer', revert: true, opacity: 0.60,
+  handle: '.btn-handler' });
   
   
 </script>

@@ -62,3 +62,25 @@ div.main > div:nth-child(n+3) {
 .general-info {
   text-align: center;
 }
+
+// Edit/Sort skill modal
+#edit_wrapper {
+  list-style: none;
+  padding: 0;
+}
+
+.skill_label {
+  display: inline-block;
+}
+
+.btn-handler {
+  float: right;
+}
+
+.delete-label {
+  float: left;
+}
+
+.reorder-label {
+  float: right;
+}
