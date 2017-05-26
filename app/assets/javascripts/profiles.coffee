@@ -3,11 +3,11 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(document).ready ->
+# $(document).ready ->
 
   # Array removal script.  This will activate when a btn with .btn_skill is clicked...
-  $('.btn_skill').on 'click', ->
-    $(this).parent().remove()
-    return
-  return
+  # $('.btn_skill').on 'click', ->
+  #   $(this).parent().remove()
+  #   return
+  # return
 

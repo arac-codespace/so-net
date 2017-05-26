@@ -1,5 +1,10 @@
-// Add the dialog title
-$('#myModalLabel').html("<i class=' glyphicon glyphicon-pencil'></i> Edit Skills");
+<% if @skill_path %>
+  // Add the dialog title
+  $('#myModalLabel').html("<i class=' glyphicon glyphicon-pencil'></i> Add new Skills");
+<% else %>
+  $('#myModalLabel').html("<i class=' glyphicon glyphicon-pencil'></i> Edit Skills");
+<% end %>
+ 
  
 // Render the edit form
 $('.modal-body').html('<%= j render("edit_skl_form") %>');

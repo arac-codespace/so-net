@@ -2,40 +2,49 @@
 
 <% if @skill_path %> 
 
-  <h3> Add Skill Form </h3>
   <%= form_for @skill, remote: true do |f| %>
   
     <% @skill.skill_hash.each do |array| %>
         <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
     <% end %>
   
-    <%= f.text_field :skill_hash, name: 'skill[skill_hash][]', :value =>'', :required => true %>
-    
+    <div class='form_wrapper'>
+      <div class = "form-group">
+        <%= f.label :skill_hash, "Skill"%>
+        <%= f.text_field :skill_hash, name: 'skill[skill_hash][]', :value =>'', :required => true, class: "form-control" %>
+      </div>
+    </div>
+    <!-- Add/remove field btn -->
+    <span class = "btn btn-sm btn-default remove_field"><i class='glyphicon glyphicon-minus'></i> </span>
+    <span class = "btn btn-sm btn-default add_field"><i class='glyphicon glyphicon-plus'></i> </span>
+
     <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       <%= f.submit "Add Skill", class: "btn btn-sm btn-info" %>
     </div>
     
   <% end %> 
 
 <% else %>
-  <!-- Delete Path -->
-  <h3> Edit Skill Form </h3>
+  <!-- Delete/Edit Path -->
   <%= form_for @skill, remote: true do |f| %>
   
+    <!--Iterate through the user's skill array to list them in hidden fields that
+    will be sent as query string to the post request along with the new skill 
+    the user wants to add -->
     <% @skill.skill_hash.each_with_index do |array, index| %>
     
       <div class = 'array_<%= index %>'>
-        <!--<div class = 'rows'>-->
-          <h4 class = 'skill_label'><%= array %></h4>
-          <span class = "btn btn-sm btn-danger btn_skill"> Remove Skill</span>
-        <!--</div>  -->
-      
+        <h4 class = 'skill_label'><%= array %></h4>
+        <span class = "btn btn-sm btn-danger btn_skill"> Remove Skill</span>
+
         <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
       </div>
     
     <% end %>
   
     <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       <%= f.submit "Save", class: "btn btn-sm btn-info" %>
     </div>
     
@@ -44,7 +53,39 @@
 <% end %>
 
 <script>
+  // Script for the edit/delete button form!  
+  // Each array has its own btn so when you
+  // click the remove btn, it will remove the parent div of the btn and everything
+  //inside! 
   $('.btn_skill').on('click', function() {
     $(this).parent().remove();
   });
+  
+  
+  // Scripts for the add skill form!
+  // The first one is the add_field btn script.
+  
+  $('.add_field').on('click', function() {
+    // I'm adding dynamic id generation for future reference.  However, this is
+    // not needed for the add and remove btns to work as they work by selecting
+    // the last child of an element.
+    
+    var form_div_id = $(".form_wrapper div").length+1;
+    var form_div = "<div class=\"form-group\" id=\"field" + form_div_id + "\"/>"
+    
+    var field = '<input name="skill[skill_hash][]" value="" required="required" class="form-control" type="text" id="skill_skill_hash"/>'
+    
+    $('.form_wrapper').append(form_div);
+    
+    $('.form-group').last().append(field);
+
+  });  
+    
+  // This script is the remove_field btn script!  
+    $('.remove_field').on('click', function() {
+      $(".form-group").not(':first').last().remove();
+    })
+  
+  
+  
 </script>
