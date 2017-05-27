@@ -11,6 +11,9 @@
 
 // Profile Show CSS
 
+
+// PROFILE LAYOUT CSS
+
 .container-parent {
   display: flex;
   margin: 0 8rem 0 8rem;
@@ -56,69 +59,50 @@ div.main > div:nth-child(n+3) {
 
 }
 
-// .topcard {
-//   box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);  
-// }
+// PROFILE LAYOUT END
+
+// INTRO SECTION CSS
 .general-info {
   text-align: center;
 }
 
-// Edit/Sort skill modal
-#edit_wrapper {
-  list-style: none;
-  padding: 0;
+.intro-edit-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
+// INTRO SECTION END
 
-.skill_label {
-  display: inline-block;
-}
 
-.btn-handler {
-  float: right;
-}
 
-.delete-label {
-  float: left;
-}
-
-.reorder-label {
-  float: right;
-}
-
-// Skill btn float right using flexbox
-.skill-header-wrapper {
- display: -webkit-flex;
- display: flex;
- -webkit-flex-direction: row;
- flex-direction: row;
-  > .skill-header {
-    flex-grow: 1;
-  }
-  > .btn-add-skill {
-    margin-right: 16px;
-  }
-}
-
+// SKILL SECTION CSS
 
 // flex-parent (skill-wrapper) > list-wrapper (skill-iteration-wrapper) 
 // > item-specific-wrapper (skill-iteration-wrapper > text (h5)
 
 .skill-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;  
+  display: block;
+  max-width: 100%;
+  // flex-direction: column;
+  // justify-content: flex-start;  
 }
 
 
 .skill-iteration-wrapper {
-  display: inline-block;
+  display: flex;
+  flex-flow: column wrap;
+  // Percent doesn't work with flex here
+  max-height: 360px;
   // Max width of elements
-  max-width: 20%;
+  // max-width: 20%;
 }
 
 .skill-iteration-tooltip {
   // A line for each item of inline-block items!
-  display: block;
+  // display: block;
+  flex: 1;
+  margin: 0 10px;
+  max-width: 200px;
 }
 .skill-iteration-wrapper > div > h5 {
   background-color: rgb(224, 224, 224);
@@ -135,4 +119,20 @@ div.main > div:nth-child(n+3) {
   display: inline-block;
   // Max width allowed by iteration-wrapper
   max-width: 100%;
+}
+
+// SKILL SECTION END
+
+//  EDUCATION SECTION CSS
+
+.section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.section-subheader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

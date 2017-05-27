@@ -1,12 +1,20 @@
 <!-- JQuery uses this to attach/remove the corresponding entry when actions are run -->
 <div id= "work_<%= work.id%>">
-  <h5 id='company-field'> <%= work.company %></h5>
+  
+  <div id='company-field' class='section-subheader'> 
+    <h4><strong><%= work.company %></strong></h4>
+    <!-- Path ids are user ids.  Row_id is a query string used to make record_id avaible for edit view -->
+    <% if user_signed_in? && current_user.id == work.user_id %>
+      <%= link_to edit_work_path(work.user_id, row_id: work.id), remote: true, :class => 'btn btn-default' do %>
+        <i class='glyphicon glyphicon-pencil'></i>
+      <% end %>
+    <% end %>  
+  </div>
+  
   <h5 id='industry-field'> <%= work.industry %></h5>
   <h5 id='job_title-field'> Grade: <%= work.job_title %></h5>
   <h5 id='work-date-field'> From: <%= work.start_date %> To: <%= work.end_date %></h5>
   <h5 id='work-description-field'> <%= work.description %></h5>
 
-  <!-- Path ids are user ids.  Row_id is a query string used to make record_id avaible for edit view -->
-<%= link_to 'Edit', edit_work_path(work.user_id, row_id: work.id), remote: true, :class => 'btn btn-sm btn-info' %>
 
 </div>

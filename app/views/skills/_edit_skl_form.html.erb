@@ -3,11 +3,13 @@
 <% if @skill_path %> 
 
   <%= form_for @skill, remote: true do |f| %>
-  
-    <% @skill.skill_hash.each do |array| %>
-        <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+    
+    <% if @skill != nil %>
+      <% @skill.skill_hash.each do |array| %>
+          <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+      <% end %>
     <% end %>
-  
+    
     <div id='form_wrapper'>
       <div class = "form-group">
         <%= f.label :skill_hash, "Skill"%>
@@ -39,23 +41,26 @@
         <h6 class= 'reorder-label'> Reorder</h6>
       </div>
       
-      <% @skill.skill_hash.each_with_index do |array, index| %>
-        <li>
-          <div class = 'array_<%= index %>'>
-            
-            <!--User view-->
-            <i class='glyphicon glyphicon-remove btn btn-danger btn_skill'></i>
-            <h4 class = 'skill_label'><%= array %></h4>
-            
-            <!--Sortable handler -->
-            <i class='glyphicon glyphicon-sort btn btn-default btn-handler'></i>
-
-            
-            <!-- Hidden value field -->
-            <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
-          </div>
-        </li>
+      <% if @skill != nil %>
+        <% @skill.skill_hash.each_with_index do |array, index| %>
+          <li>
+            <div class = 'array_<%= index %>'>
+              
+              <!--User view-->
+              <i class='glyphicon glyphicon-remove btn btn-danger btn_skill'></i>
+              <h4 class = 'skill_label'><%= array %></h4>
+              
+              <!--Sortable handler -->
+              <i class='glyphicon glyphicon-sort btn btn-default btn-handler'></i>
+  
+              
+              <!-- Hidden value field -->
+              <%= f.hidden_field :skill_hash, :multiple => true, :value => array %>
+            </div>
+          </li>
+        <% end %>
       <% end %>
+      
     </ul>
   
     <div class="modal-footer">

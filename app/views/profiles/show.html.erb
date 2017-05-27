@@ -9,20 +9,32 @@
     <!-- Intro div-->
     <div class = "m-item topcard">
       
-      <%= link_to 'Edit', edit_profile_path(@user), remote: true, :class => 'btn btn-sm btn-info' %>
+      <!-- Intro btns -->
+      <% if user_signed_in? && current_user.id == @user.id %>
+        <div class = 'intro-edit-btn'>
+          <%= link_to edit_profile_path(@user), remote: true, :class => 'btn btn-default' do %>
+            <i class='glyphicon glyphicon-pencil'></i>
+          <% end %>
+        </div>
+      <% end %>
       
+      <!-- Intro Render -->
       <div id= "profiles">  
         <%= render partial: "user_info", object: @user_info %>
       </div>  
-      
-      
     </div>
     
     <!-- Work div-->
     <div class = "m-item work-sec">
-      <h4>Work Experience</h4>
-      <div class="new_wk_btn">
-        <%= link_to "Add Work Experience", new_work_path, remote: true, class: "btn btn-primary" %>
+      <div class="new_wk_btn section-header">
+        
+        <h4>Work Experience</h4>
+        <% if user_signed_in? && current_user.id == @user.id %>
+          <%= link_to new_work_path, remote: true, class: "btn btn-default" do %>
+            <i class='glyphicon glyphicon-plus'></i>
+          <% end %>
+        <% end %>  
+      
       </div>      
       
       <!-- This way I don't need to instantiate a Work entry and the page will not break if user
@@ -46,9 +58,14 @@
     
     <!-- Education div-->
     <div class = "m-item ed-sec">
-      <h4>Education</h4>
-      <div class="new_ed_btn">
-        <%= link_to "New Education", new_education_path, remote: true, class: "btn btn-primary" %>
+      
+      <div class="new_ed_btn section-header">
+        <h4>Education</h4>
+        <% if user_signed_in? && current_user.id == @user.id %>
+          <%= link_to new_education_path, remote: true, class: "btn btn-default" do %>
+            <i class='glyphicon glyphicon-plus'></i>
+          <% end %>
+        <% end %>  
       </div>      
       
       <!-- This way I don't need to instantiate an Education entry and the page will not break if user
@@ -69,30 +86,24 @@
 
       <div class="new_skl_btn skill-header-wrapper">
         <h4 class='skill-header'> Featured Skills </h4>  
-        
-        
-        <%= link_to edit_skill_path(path: 'add_path'), remote: true, class: "btn btn-primary btn-add-skill" do %>
-          <!--<i class='glyphicon glyphicon-plus'></i>          -->
-          <span>Add a new skill</span>
-        <% end %>
-        
-        <%= link_to edit_skill_path, remote: true, class: "btn btn-info btn-edit-skill" do %>
-          <i class='glyphicon glyphicon-pencil'></i>
-        <% end %>        
-        
-        
+        <% if user_signed_in? && current_user.id == @user.id %>
+          <!-- Add/remove btns -->
+          <%= link_to edit_skill_path(path: 'add_path'), remote: true, class: "btn btn-default btn-add-skill" do %>
+            <!--<i class='glyphicon glyphicon-plus'></i>          -->
+            <span>Add a new skill</span>
+          <% end %>
+          
+          <%= link_to edit_skill_path, remote: true, class: "btn btn-default btn-edit-skill" do %>
+            <i class='glyphicon glyphicon-pencil'></i>
+          <% end %>        
+        <% end %>  
       </div>   
-      
-      <!--<div class="edit_skl_btn subheader-wrapper">-->
-      <!--  %= link_to edit_skill_path, remote: true, class: "btn btn-info" do %>-->
-      <!--    <i class='glyphicon glyphicon-pencil'></i>-->
-      <!--  % end %>-->
-      <!--</div>    -->
-      
-      <div class= 'skill-wrapper'>
-        <%= render @skills %>
-      </div>
-
+      <!-- Array rendering -->
+      <% if @skills != nil %>
+        <div class= 'skill-wrapper'>
+          <%= render @skills %>
+        </div>
+      <% end %>
 
     </div>
     

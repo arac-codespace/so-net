@@ -1,3 +1,39 @@
 // Place all the styles related to the Skills controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// STYLES HERE ARE FOR THE EDIT/ADD VIEW PAGE OF THE SKILL SECTION!
+// Edit/Sort skill modal
+#edit_wrapper {
+  list-style: none;
+  padding: 0;
+}
+
+.skill_label {
+  display: inline-block;
+}
+
+.btn-handler {
+  float: right;
+}
+
+.edit-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+// Skill btn float right using flexbox
+.skill-header-wrapper {
+ display: -webkit-flex;
+ display: flex;
+ -webkit-flex-direction: row;
+ flex-direction: row;
+  > .skill-header {
+    flex-grow: 1;
+  }
+  > .btn-add-skill {
+    margin-right: 16px;
+  }
+}
