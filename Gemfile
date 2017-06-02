@@ -40,6 +40,8 @@ gem 'font-awesome-sass'
 # Use Hirb gem for better console data presentation
 gem 'hirb', '0.7.3'
 
+# Language list select
+gem 'language_list'
 # Use paperclip gem for image uploading
 # gem "paperclip", "~> 5.0.0"
 
