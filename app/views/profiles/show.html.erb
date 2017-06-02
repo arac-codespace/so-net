@@ -110,7 +110,32 @@
     <!-- Misc div -->
     <div class = "m-item acp-sec">
       <h4> Accomplishments </h4>
-      <h5> Languages </h5>
+      
+      <!-- Language div-->
+      <div class = "m-item lang-sec">
+        <div class="new_lg_btn section-header">
+          
+          <h5>Languages</h4>
+          <% if user_signed_in? && current_user.id == @user.id %>
+            <%= link_to new_language_path, remote: true, class: "btn btn-default" do %>
+              <i class='glyphicon glyphicon-plus'></i>
+            <% end %>
+          <% end %>  
+        
+        </div>      
+        
+        <!-- This way I don't need to instantiate a Language entry and the page will not break if user
+        jumps out of user registration... -->
+        <% if @languages != nil %>
+          <div id="languages">
+            <!-- Funny enough, this renders the language partial and makes the records from the language 
+            var in the profile/show controller available to be used in the partial in the form language.column.
+            Be aware that rails assumes path and partial name based on the model offered by the var -->
+            <%= render @languages %>
+          </div>
+        <% end %>
+        
+      </div>      
       <h5> Certifications </h5>
       <h5> Projects </h5>
     </div>

@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :educations, except: [:index, :show]
   resources :works, except: [:index, :show]
   resources :skills
+  resources :languages
 
 end
